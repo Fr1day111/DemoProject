@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:project1/Pages/AboutUs.dart';
+import 'package:project1/Pages/BlogPostForm.dart';
 import 'package:project1/Pages/Blogs.dart';
 import 'package:project1/Pages/ContactUs.dart';
 import 'package:project1/Pages/MainPage.dart';
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     const AboutUs(),
     const Blogs(),
     const Photos(),
-    const ContactUs()
+    const BlogPostForm()
   ];
   var _selected = 0;
 
