@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     const AboutUs(),
     const Blogs(),
     const Photos(),
-    const BlogPostForm()
+    const ContactUs()
   ];
   var _selected = 0;
 

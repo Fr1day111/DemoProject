@@ -26,7 +26,14 @@ class MongoDatabase {
   //var db;
   static connect() async {
    var db= await mongo.Db.create(ConURL);
-    await db.open();
+    await db.open().then((value) {
+      //print("****************************");
+      db.close();
+    }).onError((error, stackTrace) {
+      print(error);
+      print("***********");
+    });
+
     //var collection= db.collection('users');
     //print(await collection.find().toList());
   }
@@ -34,7 +41,7 @@ class MongoDatabase {
      var db= await mongo.Db.create(ConURL);
      await db.open();
      //connect();
-    var blogs=db.collection('Blogs');
+    var blogs=db.collection('Feedback');
     await blogs.insertOne({
       'Title' : t,
       'Detail':d
@@ -51,11 +58,40 @@ class MongoDatabase {
     await cursor.forEach((doc) {
       data.add(doc);
     });
-    print(data);
-    print("************************");
+  //  print(data);
+    //print("************************");
     await db.close();
     return data;
-
-
   }
+  static Future<List<dynamic>> fetchPhotos() async {
+    List<dynamic> data=[];
+    var db = await mongo.Db.create(ConURL);
+    await db.open();
+
+    final collection = db.collection('photos');
+    final cursor = collection.find();
+
+    await cursor.forEach((doc) {
+      data.add(doc);
+    });
+    //  print(data);
+    //print("************************");
+    await db.close();
+    return data;
+  }
+  static storePhotoInMongoDB(var photoData) async {
+    final db = await mongo.Db.create(ConURL);
+    await db.open();
+
+    final photoCollection = db.collection('photos');
+
+    final photo = {
+      'data': photoData,
+    };
+
+    await photoCollection.insert(photo);
+
+    await db.close();
+  }
+
 }

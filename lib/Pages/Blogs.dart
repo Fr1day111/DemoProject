@@ -16,12 +16,13 @@ class _BlogsState extends State<Blogs> {
     return FutureBuilder<List<dynamic>>(
       future: MongoDatabase.fetchData(),
         builder: (context,snapshot){
-        if (snapshot.connectionState==ConnectionState.waiting)
-          return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            )
+        if (snapshot.connectionState==ConnectionState.waiting) {
+          return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              )
           );
+        }
         else {
           return DataScreen(snapshot.data);
         }

@@ -38,6 +38,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   carousel_slider: ^4.2.1
   mongo_dart: ^0.8.2
+  image_picker: ^0.8.6
+  permission_handler: ^10.2.0
 
 dev_dependencies:
   flutter_test:
