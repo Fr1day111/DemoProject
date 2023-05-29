@@ -46,115 +46,115 @@ class _HomePageState extends State<HomePage> {
         endDrawer: SafeArea(
           child: Drawer(
             child: Container(
-              color: Colors.blue,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: logicalHeight * 0.35,
-                   // horizontal: logicalWidth * 0.05
-                ),
-                child: Column(
-                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      color: _selected==0?Colors.purple:Colors.transparent,
-                      child: GestureDetector(
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(right: logicalWidth * 0.05),
-                              child: const Icon(
-                                Icons.home,
-                              ),
-                            ),
-                            Text(
-                              "Home",
-                              style: drawer,
-                            ),
-                          ],
-                        ),
-                        onTap: () {
-                          tapfun(0);
-                        },
-                      ),
+              child: Column(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset("Assets/Logos/logo.png",height: logicalHeight*0.3,width: logicalWidth*0.5,),
+                  Container(
+                    child: Center(
+                      child: Text("Dailekhi Sewa Samaj", style: drawer),
                     ),
-                    Container(
-                      color: _selected==1?Colors.purple:Colors.transparent,
-                      child: GestureDetector(
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(right: logicalWidth * 0.05),
-                              child: const ImageIcon(
-                                  AssetImage("Assets/Logos/AboutUS.png")),
+                  ),
+                  SizedBox(height: logicalHeight*0.15,),
+                  Container(
+                    color: _selected==0?Colors.purple:Colors.transparent,
+                    child: GestureDetector(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsets.only(right: logicalWidth * 0.05),
+                            child: const Icon(
+                              Icons.home,
                             ),
-                            Text("About Us", style: drawer),
-                          ],
-                        ),
-                        onTap: () {
-                          tapfun(1);
-                        },
+                          ),
+                          Text(
+                            "Home",
+                            style: drawer,
+                          ),
+                        ],
                       ),
+                      onTap: () {
+                        tapfun(0);
+                      },
                     ),
-                    Container(
-                      color: _selected==2?Colors.purple:Colors.transparent,
-                      child: GestureDetector(
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(right: logicalWidth * 0.05),
-                              child: const ImageIcon(
-                                  AssetImage("Assets/Logos/blog.png")),
-                            ),
-                            Text("Blog", style: drawer),
-                          ],
-                        ),
-                        onTap: () {
-                          tapfun(2);
-                        },
+                  ),
+                  Container(
+                    color: _selected==1?Colors.purple:Colors.transparent,
+                    child: GestureDetector(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsets.only(right: logicalWidth * 0.05),
+                            child: const ImageIcon(
+                                AssetImage("Assets/Logos/AboutUS.png")),
+                          ),
+                          Text("About Us", style: drawer),
+                        ],
                       ),
+                      onTap: () {
+                        tapfun(1);
+                      },
                     ),
-                    Container(
-                      color: _selected==3?Colors.purple:Colors.transparent,
-                      child: GestureDetector(
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(right: logicalWidth * 0.05),
-                              child: const Icon(Icons.photo),
-                            ),
-                            Text("Photos", style: drawer),
-                          ],
-                        ),
-                        onTap: () {
-                          tapfun(3);
-                        },
+                  ),
+                  Container(
+                    color: _selected==2?Colors.purple:Colors.transparent,
+                    child: GestureDetector(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsets.only(right: logicalWidth * 0.05),
+                            child: const ImageIcon(
+                                AssetImage("Assets/Logos/blog.png")),
+                          ),
+                          Text("Blog", style: drawer),
+                        ],
                       ),
+                      onTap: () {
+                        tapfun(2);
+                      },
                     ),
-                    Container(
-                      color: _selected==4?Colors.purple:Colors.transparent,
-                      child: GestureDetector(
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(right: logicalWidth * 0.05),
-                              child: const ImageIcon(
-                                  AssetImage("Assets/Logos/contact-us-icon.png")),
-                            ),
-                            Text("Contact Us", style: drawer),
-                          ],
-                        ),
-                        onTap: () {
-                          tapfun(4);
-                        },
+                  ),
+                  Container(
+                    color: _selected==3?Colors.purple:Colors.transparent,
+                    child: GestureDetector(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsets.only(right: logicalWidth * 0.05),
+                            child: const Icon(Icons.photo),
+                          ),
+                          Text("Photos", style: drawer),
+                        ],
                       ),
+                      onTap: () {
+                        tapfun(3);
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                  Container(
+                    color: _selected==4?Colors.purple:Colors.transparent,
+                    child: GestureDetector(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsets.only(right: logicalWidth * 0.05),
+                            child: const ImageIcon(
+                                AssetImage("Assets/Logos/contact-us-icon.png")),
+                          ),
+                          Text("Contact Us", style: drawer),
+                        ],
+                      ),
+                      onTap: () {
+                        tapfun(4);
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
