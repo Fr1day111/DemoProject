@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:footer/footer.dart';
+import 'package:footer/footer_view.dart';
 import 'package:project1/Pages/AboutUs.dart';
 import 'package:project1/Pages/BlogPostForm.dart';
 import 'package:project1/Pages/Blogs.dart';
@@ -34,6 +36,18 @@ class _HomePageState extends State<HomePage> {
       _scaffoldKey.currentState!.openDrawer();
     }
   }
+  String getText()
+  {
+    switch(_selected)
+        {
+        case 0 : return 'Home';
+        case 1 : return 'About Us';
+        case 2 : return 'Blogs';
+        case 3 : return 'Photos';
+      default : return 'Contact Us';
+
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +55,12 @@ class _HomePageState extends State<HomePage> {
         key: _scaffoldKey,
         appBar: AppBar(
           toolbarHeight: logicalHeight * 0.07,
-          title: const Text('HomePage'),
+          title:  Center(child: Text(getText(),style: TextStyle(fontWeight: FontWeight.bold),)),
+          elevation: 0,
         ),
         endDrawer: SafeArea(
           child: Drawer(
-            child: Container(
+            child: SingleChildScrollView(
               child: Column(
                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -109,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                             child: const ImageIcon(
                                 AssetImage("Assets/Logos/blog.png")),
                           ),
-                          Text("Blog", style: drawer),
+                          Text("Blogs", style: drawer),
                         ],
                       ),
                       onTap: () {

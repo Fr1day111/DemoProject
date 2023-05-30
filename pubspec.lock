@@ -142,6 +142,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  footer:
+    dependency: "direct main"
+    description:
+      name: footer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4"
+  full_screen_image:
+    dependency: "direct main"
+    description:
+      name: full_screen_image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   http:
     dependency: transitive
     description:

@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:full_screen_image/full_screen_image.dart';
 import 'package:project1/Pages/Info.dart';
 import 'MainPage.dart';
 
@@ -35,17 +36,24 @@ class _PhotosState extends State<Photos> {
             ? const Text('Nodata')
             : SingleChildScrollView(
           child: Container(
-            // margin: EdgeInsets.symmetric(horizontal: 20),
-            //width: logicalWidth,
             height: logicalHeight,
             child: GridView.builder(
-              gridDelegate:  const SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
+                mainAxisSpacing: logicalHeight*0.01,
               ),
                 itemCount: data!.length,
                 itemBuilder: (context, index) {
                   final document = data![index];
-                  return buildImage(document);
+                  return GestureDetector(child: buildImage(document),
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FullScreenImage(document: document),
+                      ),
+                    );
+                  },);
                 },
                 ),
           ),
@@ -57,16 +65,44 @@ class _PhotosState extends State<Photos> {
     final byteData = Uint8List.fromList(imageBytes).buffer.asByteData();
     return Container(
       margin: EdgeInsets.symmetric(horizontal: logicalWidth * 0.01),
-      //color: Colors.amberAccent,
-      //width: logicalWidth,
-      // decoration: BoxDecoration(
-      // image: DecorationImage(
-      //   image: Image.memory(byteData), fit: BoxFit.cover),
-      //),
       child: Image.memory(
         byteData.buffer.asUint8List(),
         fit: BoxFit.cover,
         width: logicalWidth,
+      ),
+    );
+  }
+}
+
+class FullScreenImage extends StatelessWidget {
+  //final int index;
+  var document;
+
+  FullScreenImage({required this.document});
+
+
+  @override
+  Widget build(BuildContext context) {
+    final imageBytes = document['data'].cast<int>();
+    final byteData = Uint8List
+        .fromList(imageBytes)
+        .buffer
+        .asByteData();
+    return Scaffold(
+      body: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Center(
+          child: Hero(
+            tag: 'image_',
+            child: Image.memory(
+              byteData.buffer.asUint8List(),
+              // Replace with your image asset path
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
       ),
     );
   }

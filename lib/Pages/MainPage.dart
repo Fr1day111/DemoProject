@@ -15,12 +15,12 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
+      child: SizedBox(
         height: logicalHeight,
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: logicalHeight * 0.4,
                 child: FutureBuilder<List<dynamic>>(
                     future: MongoDatabase.fetchPhotos(),
@@ -30,8 +30,10 @@ class _MainPageState extends State<MainPage> {
                             body: Center(
                           child: CircularProgressIndicator(),
                         ));
-                      } else {
+                      } else if (snapshot.hasData) {
                         return ShowPhotos(snapshot.data);
+                      } else {
+                        return const Center(child: Text("No DATA"));
                       }
                     }),
               ),
@@ -50,25 +52,20 @@ class _MainPageState extends State<MainPage> {
   Widget ShowPhotos(List? data) {
     return SafeArea(
         child: data!.isEmpty
-            ? const Text('Nodata')
+            ? const Text('No data')
             : SingleChildScrollView(
-                child: Container(
-                  // margin: EdgeInsets.symmetric(horizontal: 20),
-                  //width: logicalWidth,
-                  //height: logicalHeight*0.3,
-                  child: CarouselSlider.builder(
-                      itemCount: data!.length,
-                      itemBuilder: (context, index, realIndex) {
-                        final document = data![index];
-                        return buildImage(document);
-                      },
-                      options: CarouselOptions(
-                          height: logicalHeight * 0.35,
-                          autoPlay: true,
-                          enlargeCenterPage: true,
-                          //aspectRatio: 6 / 2,
-                          autoPlayCurve: Curves.fastOutSlowIn)),
-                ),
+                child: CarouselSlider.builder(
+                    itemCount: data!.length,
+                    itemBuilder: (context, index, realIndex) {
+                      final document = data![index];
+                      return buildImage(document);
+                    },
+                    options: CarouselOptions(
+                        height: logicalHeight * 0.35,
+                        autoPlay: true,
+                        enlargeCenterPage: true,
+                        //aspectRatio: 6 / 2,
+                        autoPlayCurve: Curves.fastOutSlowIn)),
               ));
   }
 
@@ -77,12 +74,6 @@ class _MainPageState extends State<MainPage> {
     final byteData = Uint8List.fromList(imageBytes).buffer.asByteData();
     return Container(
       margin: EdgeInsets.symmetric(horizontal: logicalWidth * 0.01),
-      //color: Colors.amberAccent,
-      //width: logicalWidth,
-      // decoration: BoxDecoration(
-      // image: DecorationImage(
-      //   image: Image.memory(byteData), fit: BoxFit.cover),
-      //),
       child: Image.memory(
         byteData.buffer.asUint8List(),
         fit: BoxFit.cover,
