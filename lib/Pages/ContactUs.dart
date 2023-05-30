@@ -82,8 +82,8 @@ class _ContactUsState extends State<ContactUs> {
                           actions: <Widget>[
                             TextButton(
                               onPressed: () {
-                                MongoDatabase.add(_titleController.text,
-                                    _contentController.text);
+                               // MongoDatabase.add(_titleController.text,
+                                 //   _contentController.text);
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                         content: Text('Feedback submitted!')));

@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mongo_dart/mongo_dart.dart' as mongo;
 
 var pixelRatio = window.devicePixelRatio;
@@ -17,7 +18,7 @@ var logicalHeight = logicalScreenSize.height;
 TextStyle drawer =TextStyle(
     fontSize: logicalWidth/17,
     fontWeight: FontWeight.bold,
-    color: Colors.amber
+    color: Colors.black
   );
 
 String ConURL='mongodb+srv://admin:admin@cluster0.he7k85g.mongodb.net/Demo';
@@ -37,14 +38,16 @@ class MongoDatabase {
     //var collection= db.collection('users');
     //print(await collection.find().toList());
   }
-   static add(String t,String d) async {
+   static add(String t,String d,List? p) async {
      var db= await mongo.Db.create(ConURL);
      await db.open();
      //connect();
     var blogs=db.collection('Feedback');
+
     await blogs.insertOne({
       'Title' : t,
-      'Detail':d
+      'Detail':d,
+      'Photos': p
     });
   }
   static Future<List<dynamic>> fetchData() async {
@@ -54,7 +57,6 @@ class MongoDatabase {
 
     final collection = db.collection('Blogs');
     final cursor = collection.find();
-
     await cursor.forEach((doc) {
       data.add(doc);
     });
@@ -67,7 +69,7 @@ class MongoDatabase {
     List<dynamic> data=[];
     var db = await mongo.Db.create(ConURL);
     await db.open();
-
+    final gridFS =mongo.GridFS(db);
     final collection = db.collection('photos');
     final cursor = collection.find();
 

@@ -42,6 +42,8 @@ dependencies:
   permission_handler: ^10.2.0
   full_screen_image: ^2.0.0
   footer: ^0.0.4
+  archive: ^3.3.7
+  lottie: ^2.3.2
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +73,11 @@ flutter:
     - Assets/Logos/AboutUS.png
     - Assets/Logos/contact-us-icon.png
     - Assets/Logos/logo.png
+    - Assets/Logos/waveflag.gif
+    - Assets/Logos/mission.json
+    - Assets/Logos/vision.json
+    - Assets/Logos/normsandvalues.json
+    - Assets/Logos/goals.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

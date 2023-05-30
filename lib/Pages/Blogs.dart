@@ -38,15 +38,29 @@ class DataScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemCount: data!.length,
-        itemBuilder: (context, index) {
-          final document = data![index];
-          return ListTile(
-            title: Text(document['Title']),
-            subtitle: Text(document['Detail']),
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: ListView.builder(
+          itemCount: data!.length,
+          itemBuilder: (context, index) {
+            final document = data![index];
+            return ListTile(
+              title: Center(child: Text(document['Title'],style: TextStyle(fontSize: logicalWidth*0.05),)),
+              subtitle: Column(
+                children: [
+                  Text(document['Detail']),
+                  Container(
+                    height: logicalHeight*0.3,
+                    width: double.infinity,
+                    //color: Colors.black,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.black),
+                  ),
+                  Divider(thickness: 2,)
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

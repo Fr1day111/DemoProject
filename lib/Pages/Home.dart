@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
+import 'package:lottie/lottie.dart';
 import 'package:project1/Pages/AboutUs.dart';
 import 'package:project1/Pages/BlogPostForm.dart';
 import 'package:project1/Pages/Blogs.dart';
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
     const AboutUs(),
     const Blogs(),
     const Photos(),
-    const ContactUs()
+    const BlogPostForm()
   ];
   var _selected = 0;
 
@@ -54,12 +55,34 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
-          toolbarHeight: logicalHeight * 0.07,
-          title:  Center(child: Text(getText(),style: TextStyle(fontWeight: FontWeight.bold),)),
+          backgroundColor: Color.fromRGBO(203 ,213 ,225,1),
+          toolbarHeight: logicalHeight * 0.08,
+          title:  Padding(
+            padding: EdgeInsets.only(left: logicalWidth*0.01),
+            child: Row(
+              children: [
+                Image.asset("Assets/Logos/logo.png",height: logicalHeight*0.06,width: logicalWidth*0.2,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child: Column(
+                    children: [
+                      Text('दैलेखी सेवा समाज',style: TextStyle(color: Colors.black),),
+                      Text('काठमाडौँ, नेपाल',style: TextStyle(color: Colors.black),)
+                    ],
+                  ),
+                ),
+                Container(
+                  height: logicalHeight*0.05,
+                    width: logicalWidth*0.1,
+                    child: Image.asset('Assets/Logos/waveflag.gif'))
+              ],
+            ),
+          ),
           elevation: 0,
         ),
         endDrawer: SafeArea(
           child: Drawer(
+            backgroundColor: Color.fromRGBO(203 ,213 ,225,1),
             child: SingleChildScrollView(
               child: Column(
                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
